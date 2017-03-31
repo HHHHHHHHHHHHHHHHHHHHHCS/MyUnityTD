@@ -14,8 +14,8 @@ public class CreateTowerUIManager : MonoBehaviour
 
     private Transform towerParent;
 
-    private Vector2 startPos = new Vector2(50, 45);
-    private float offsetX = 75;
+    private Vector2 startPos = new Vector2(60, 55);
+    private float offsetX = 90;
 
     private int nowID = 0;
 
