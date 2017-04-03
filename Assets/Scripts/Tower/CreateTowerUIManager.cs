@@ -14,8 +14,9 @@ public class CreateTowerUIManager : MonoBehaviour
 
     private Transform towerParent;
 
-    private Vector2 startPos = new Vector2(60, 55);
-    private float offsetX = 90;
+    private Vector2 UIstartPos = new Vector2(60, 55);
+    private float UIoffsetX = 90;
+
 
     private int nowID = 0;
 
@@ -44,29 +45,35 @@ public class CreateTowerUIManager : MonoBehaviour
 
     public void Update()
     {
-        if(nowID!=0&& Input.GetMouseButtonDown(0))
+        CreateTower();
+    }
+
+
+    void CreateTower()
+    {
+        if (nowID != 0 && Input.GetMouseButtonDown(0))
         {
-            if(!EventSystem.current.IsPointerOverGameObject())
+            if (!EventSystem.current.IsPointerOverGameObject())
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
-                bool isCollider = Physics.Raycast(ray, out hit, 100,layer);
-                if(isCollider)
+                bool isCollider = Physics.Raycast(ray, out hit, 100, layer);
+                if (isCollider)
                 {
                     GameObject mapCube = hit.collider.gameObject;
                     CubeBase cb = mapCube.GetComponent<CubeBase>();
-                    if(cb!=null&&!cb.HaveBuild())
+                    if (cb != null && !cb.HaveBuild())
                     {
                         TowerBase tb = TowerDataManager.Instance.GetByID(nowID);
                         GameManager.Instance.UseMoney(tb.info[0].money);
-                        ((GameObject)Instantiate(tb.info[0].prefab, mapCube.transform.position,Quaternion.identity, towerParent))
-                            .GetComponent<TowerController>().Init(tb,0);
+                        Instantiate(tb.info[0].prefab, mapCube.transform.position, Quaternion.identity, towerParent)
+                            .GetComponent<TowerController>().Init(tb, 0);
                         nowID = 0;
                         cb.NewBuild(tb);
-                        if(buildEffectPrefab!=null)
+                        if (buildEffectPrefab != null)
                         {
                             Destroy(Instantiate(buildEffectPrefab, mapCube.transform.position
-                                , Quaternion.identity, mapCube.transform),1.0f);
+                                , Quaternion.identity, mapCube.transform), 1.0f);
                         }
 
                     }
@@ -75,7 +82,6 @@ public class CreateTowerUIManager : MonoBehaviour
         }
     }
 
-
     void CreateTowerUI(int[] towerIDs)
     {
         GameObject prefab = LoadPrefab.Load<GameObject>(createButtonPath);
@@ -83,7 +89,7 @@ public class CreateTowerUIManager : MonoBehaviour
         for (int i = 0; i < towerIDs.Length; i++)
         {
             GameObject newGo = (GameObject)Instantiate(prefab, transform);
-            ((RectTransform)newGo.transform).anchoredPosition = new Vector2(startPos.x + offsetX * i, startPos.y);
+            ((RectTransform)newGo.transform).anchoredPosition = new Vector2(UIstartPos.x + UIoffsetX * i, UIstartPos.y);
             towerUIArr[i] = newGo.GetComponent<CreateTowerButton>();
             towerUIArr[i].Init(towerIDs[i]);
         }
