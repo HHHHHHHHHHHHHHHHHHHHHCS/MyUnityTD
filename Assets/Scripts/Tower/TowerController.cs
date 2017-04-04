@@ -3,17 +3,28 @@ using System.Collections;
 
 public class TowerController : MonoBehaviour
 {
+    private static Transform bulletManager;
     private TowerBase tb;
     private int nowLevel;
     private float attackTimer;
 
     private EnemyBase nowTarget;
 
+    private Transform bulletPos;
+
 
     public void Init(TowerBase _tb, int _nowLevel)
     {
         tb = _tb;
         nowLevel = _nowLevel;
+        if (bulletPos == null)
+        {
+            bulletPos = transform.Find("BulletPos");
+        }
+        if (bulletManager == null)
+        {
+            bulletManager = GameObject.Find("BulletManager").transform;
+        }
     }
 
     void FixedUpdate()
@@ -32,8 +43,11 @@ public class TowerController : MonoBehaviour
     void _Attack()
     {
         attackTimer = tb.info[nowLevel].attackSpeed;
-        nowTarget.TakeDamage(tb.attackType, tb.info[nowLevel].attack);
-        
+        Vector3 lookAt = new Vector3(nowTarget.transform.position.x - transform.position.x, 0, nowTarget.transform.position.z - transform.position.z);
+        Quaternion qua = Quaternion.LookRotation(lookAt);
+        transform.rotation = qua;
+        Instantiate(tb.info[nowLevel].bulletPrefab, bulletPos.position, tb.info[nowLevel].bulletPrefab.transform.rotation
+            , bulletManager);
     }
 
 

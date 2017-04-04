@@ -13,6 +13,12 @@ public class EnemyInfo
     public float arrmor;
     public float magicArrmor;
     public int reward;
+
+
+    public EnemyInfo Clone()
+    {
+        return MemberwiseClone() as EnemyInfo;
+    }
 }
 
 [System.Serializable]
@@ -20,4 +26,5 @@ public class EnemyInfo
 public class EnemyInfoList : ScriptableObject
 {
     public List<EnemyInfo> data;
+
 }

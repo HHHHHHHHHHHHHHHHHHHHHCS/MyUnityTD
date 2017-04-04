@@ -8,7 +8,7 @@ public class EnemyBase : MonoBehaviour
     private Transform[] movePoints;
     private int moveIndex = 0;
 
-    private EnemyInfo enemyInfo;
+    public EnemyInfo enemyInfo;
 
     public EnemyInfo EnemyInfo
     {

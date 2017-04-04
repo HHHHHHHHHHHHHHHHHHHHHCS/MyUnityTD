@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4000010254262274}
   - component: {fileID: 33000010388720704}
   - component: {fileID: 23000013543545996}
+  - component: {fileID: 114406537078631140}
   m_Layer: 0
   m_Name: Tower_Turret_Bullet
   m_TagString: Bullet
@@ -35,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014094249746}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 250, y: 250, z: 250}
   m_Children: []
   m_Father: {fileID: 0}
@@ -79,3 +80,14 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014094249746}
   m_Mesh: {fileID: 4300000, guid: 9df910d76380dc649b89daacf5c8d0ac, type: 3}
+--- !u!114 &114406537078631140
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014094249746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d0a1af650a8bb746a9c3919c99404de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

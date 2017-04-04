@@ -86,14 +86,14 @@ public class EnemyManager : MonoBehaviour
                     continue;
                 }
 
-                EnemyInfo waveEnemyInfo = GetEnemyInfoById(waveInfo.id);
+                EnemyInfo waveEnemyInfo=GetEnemyInfoById(waveInfo.id);
 
                 for (int count = 0; count < waveInfo.count; count++)
                 {
-                    EnemyBase eb = ((GameObject)Instantiate(waveEnemyInfo.prefab, startPos, Quaternion.identity, transform))
+                    EnemyBase eb = Instantiate(waveEnemyInfo.prefab, startPos, Quaternion.identity, transform)
                         .GetComponent<EnemyBase>();
                     enemyList.Add(eb);
-                    eb.EnemyInfo = waveEnemyInfo;
+                    eb.EnemyInfo = waveEnemyInfo.Clone();
                     yield return new WaitForSeconds(levelList.spawnTime);
                 }
             }
