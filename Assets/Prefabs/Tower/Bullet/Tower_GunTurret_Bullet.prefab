@@ -9,20 +9,19 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1000010787678220}
+  m_RootGameObject: {fileID: 1847952208273642}
   m_IsPrefabParent: 1
---- !u!1 &1000010787678220
+--- !u!1 &1173234502520452
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4000010512267858}
-  - component: {fileID: 33000012650897036}
-  - component: {fileID: 136000013255631638}
-  - component: {fileID: 23000010656634984}
-  - component: {fileID: 114967016039606760}
+  - component: {fileID: 4170862833443050}
+  - component: {fileID: 33850276984969318}
+  - component: {fileID: 136755916232364088}
+  - component: {fileID: 23010116731557866}
   m_Layer: 0
   m_Name: Tower_GunTurret_Bullet
   m_TagString: Bullet
@@ -30,25 +29,55 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4000010512267858
+--- !u!1 &1847952208273642
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4496661507731450}
+  - component: {fileID: 114795127545576494}
+  m_Layer: 0
+  m_Name: Tower_GunTurret_Bullet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4170862833443050
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010787678220}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_GameObject: {fileID: 1173234502520452}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_LocalScale: {x: 0.7500005, y: 0.7500005, z: 0.75}
   m_Children: []
+  m_Father: {fileID: 4496661507731450}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
+--- !u!4 &4496661507731450
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1847952208273642}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4170862833443050}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
---- !u!23 &23000010656634984
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &23010116731557866
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010787678220}
+  m_GameObject: {fileID: 1173234502520452}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -74,30 +103,30 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &33000012650897036
+--- !u!33 &33850276984969318
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010787678220}
+  m_GameObject: {fileID: 1173234502520452}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114967016039606760
+--- !u!114 &114795127545576494
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010787678220}
+  m_GameObject: {fileID: 1847952208273642}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d0a1af650a8bb746a9c3919c99404de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!136 &136000013255631638
+--- !u!136 &136755916232364088
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010787678220}
+  m_GameObject: {fileID: 1173234502520452}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1

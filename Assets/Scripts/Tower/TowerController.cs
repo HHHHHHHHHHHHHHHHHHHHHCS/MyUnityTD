@@ -46,8 +46,9 @@ public class TowerController : MonoBehaviour
         Vector3 lookAt = new Vector3(nowTarget.transform.position.x - transform.position.x, 0, nowTarget.transform.position.z - transform.position.z);
         Quaternion qua = Quaternion.LookRotation(lookAt);
         transform.rotation = qua;
-        Instantiate(tb.info[nowLevel].bulletPrefab, bulletPos.position, tb.info[nowLevel].bulletPrefab.transform.rotation
-            , bulletManager);
+        BulletBase bb= Instantiate(tb.info[nowLevel].bulletPrefab, bulletPos.position, tb.info[nowLevel].bulletPrefab.transform.rotation
+            , bulletManager).GetComponent<BulletBase>();
+        bb.Init(nowTarget,tb.attackType, tb.info[nowLevel].attack, tb.bulletSpeed);
     }
 
 

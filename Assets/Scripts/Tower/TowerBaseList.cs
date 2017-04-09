@@ -29,7 +29,13 @@ public class TowerBase
     public string objectName;
     public Sprite uiImage;
     public AttaclType attackType = AttaclType.physical;
+    public float bulletSpeed = 30f;
     public List<TowerInfo> info;
+
+    public TowerBase Clone()
+    {
+        return (TowerBase)MemberwiseClone();
+    }
 }
 
 

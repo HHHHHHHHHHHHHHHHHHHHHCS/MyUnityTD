@@ -64,7 +64,7 @@ public class CreateTowerUIManager : MonoBehaviour
                     CubeBase cb = mapCube.GetComponent<CubeBase>();
                     if (cb != null && !cb.HaveBuild())
                     {
-                        TowerBase tb = TowerDataManager.Instance.GetByID(nowID);
+                        TowerBase tb = TowerDataManager.Instance.GetByID(nowID).Clone();
                         GameManager.Instance.UseMoney(tb.info[0].money);
                         Instantiate(tb.info[0].prefab, mapCube.transform.position, Quaternion.identity, towerParent)
                             .GetComponent<TowerController>().Init(tb, 0);
@@ -75,7 +75,6 @@ public class CreateTowerUIManager : MonoBehaviour
                             Destroy(Instantiate(buildEffectPrefab, mapCube.transform.position
                                 , Quaternion.identity, mapCube.transform), 1.0f);
                         }
-
                     }
                 }
             }

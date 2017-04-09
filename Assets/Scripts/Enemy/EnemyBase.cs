@@ -5,6 +5,12 @@ using System.Collections;
 
 public class EnemyBase : MonoBehaviour
 {
+
+    private const string deadEffectPath = "Enemy/Effect/EnemyDeadEffect";
+
+
+    private static GameObject deadEffect;
+
     private Transform[] movePoints;
     private int moveIndex = 0;
 
@@ -21,6 +27,11 @@ public class EnemyBase : MonoBehaviour
         {
             enemyInfo = value;
         }
+    }
+
+    public virtual void Awake()
+    {
+        deadEffect = Resources.Load<GameObject>(deadEffectPath);
     }
 
     public virtual void Start()
@@ -75,10 +86,10 @@ public class EnemyBase : MonoBehaviour
     }
 
 
-    public virtual float TakeDamage(AttaclType damageType,float damage)
+    public virtual float TakeDamage(AttaclType damageType, float damage)
     {
         enemyInfo.hp -= damage;
-        if (enemyInfo.hp<= 0)
+        if (enemyInfo.hp <= 0)
         {
             enemyInfo.hp = 0;
             Dead();
@@ -92,6 +103,10 @@ public class EnemyBase : MonoBehaviour
     /// </summary>
     protected virtual void Dead()
     {
+        if (deadEffect)
+        {
+            Destroy(Instantiate(deadEffect, transform.position, Quaternion.identity), 1f);
+        }
         GameManager.Instance.AddMoney(enemyInfo.reward);
         EnemyManager.Instance.ReduceEnemyCount(this);
     }

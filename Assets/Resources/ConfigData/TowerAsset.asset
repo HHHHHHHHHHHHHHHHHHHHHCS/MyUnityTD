@@ -16,23 +16,24 @@ MonoBehaviour:
     objectName: "\u7BAD\u5854"
     uiImage: {fileID: 21300000, guid: a48d54caf58e38b408ad19a22cd4f76c, type: 3}
     attackType: 0
+    bulletSpeed: 60
     info:
     - prefab: {fileID: 1000012576521460, guid: 19ae1441f23a41a40ac8cb58fa54293f, type: 2}
-      bulletPrefab: {fileID: 1000011574208092, guid: 87a786f73918b66459163a6735029bed,
+      bulletPrefab: {fileID: 1175169329808000, guid: 2f7b02c42e2ef2c4686e44eb3bf8d663,
         type: 2}
       attack: 25
       attackSpeed: 0.5
       attackRange: 15
       money: 20
     - prefab: {fileID: 1000010063971264, guid: 0a9b6a1a7a8f6294ba8667d4d8b06177, type: 2}
-      bulletPrefab: {fileID: 1000011574208092, guid: 87a786f73918b66459163a6735029bed,
+      bulletPrefab: {fileID: 1175169329808000, guid: 2f7b02c42e2ef2c4686e44eb3bf8d663,
         type: 2}
       attack: 40
       attackSpeed: 0.4
       attackRange: 17.5
       money: 25
     - prefab: {fileID: 1000010951390918, guid: 26e02341a83ef3047869f795cdefc492, type: 2}
-      bulletPrefab: {fileID: 1000011574208092, guid: 87a786f73918b66459163a6735029bed,
+      bulletPrefab: {fileID: 1175169329808000, guid: 2f7b02c42e2ef2c4686e44eb3bf8d663,
         type: 2}
       attack: 55
       attackSpeed: 0.3
@@ -42,23 +43,24 @@ MonoBehaviour:
     objectName: "\u70AE\u5854"
     uiImage: {fileID: 21300000, guid: 62fb25501bc41d247ab4db84b757e526, type: 3}
     attackType: 0
+    bulletSpeed: 50
     info:
     - prefab: {fileID: 1000010141856094, guid: 4151052e5d0e67e4580a1a6cdb870ba3, type: 2}
-      bulletPrefab: {fileID: 1000014094249746, guid: 4398470457883d24b889cc536fe6529a,
+      bulletPrefab: {fileID: 1868310230731736, guid: 3a1ff9df1e274b64cb7e1a0b630bc4ab,
         type: 2}
       attack: 75
       attackSpeed: 1
       attackRange: 20
       money: 40
     - prefab: {fileID: 1000012515620076, guid: 1e3461260609da647a86cfa05488d85c, type: 2}
-      bulletPrefab: {fileID: 1000014094249746, guid: 4398470457883d24b889cc536fe6529a,
+      bulletPrefab: {fileID: 1868310230731736, guid: 3a1ff9df1e274b64cb7e1a0b630bc4ab,
         type: 2}
       attack: 100
       attackSpeed: 1
       attackRange: 25
       money: 50
     - prefab: {fileID: 1000014281849026, guid: 0d3fc6bca946d4f42a36ae20d01e6ef7, type: 2}
-      bulletPrefab: {fileID: 1000014094249746, guid: 4398470457883d24b889cc536fe6529a,
+      bulletPrefab: {fileID: 1868310230731736, guid: 3a1ff9df1e274b64cb7e1a0b630bc4ab,
         type: 2}
       attack: 125
       attackSpeed: 1
@@ -68,23 +70,24 @@ MonoBehaviour:
     objectName: "\u673A\u67AA\u5854"
     uiImage: {fileID: 21300000, guid: dc74b87909039a84d8216a1e1f4fe9c9, type: 3}
     attackType: 0
+    bulletSpeed: 70
     info:
     - prefab: {fileID: 1000010235367264, guid: a1c761e916c72f94e8ea9cfaff414bb8, type: 2}
-      bulletPrefab: {fileID: 1000010787678220, guid: 25a6c2011fb2a6c49835ba5c5d397886,
+      bulletPrefab: {fileID: 1847952208273642, guid: 10a2ded93e39155439bdf84ffd95e01e,
         type: 2}
       attack: 10
       attackSpeed: 0.1
       attackRange: 10
       money: 30
     - prefab: {fileID: 1000013560901182, guid: 27029d8277d102d4b84ddabda7207906, type: 2}
-      bulletPrefab: {fileID: 1000010787678220, guid: 25a6c2011fb2a6c49835ba5c5d397886,
+      bulletPrefab: {fileID: 1847952208273642, guid: 10a2ded93e39155439bdf84ffd95e01e,
         type: 2}
       attack: 15
       attackSpeed: 0.1
       attackRange: 12.5
       money: 30
     - prefab: {fileID: 1000012227691610, guid: 6d8aabb6f2d13514ca38ffa413a3ae08, type: 2}
-      bulletPrefab: {fileID: 1000010787678220, guid: 25a6c2011fb2a6c49835ba5c5d397886,
+      bulletPrefab: {fileID: 1847952208273642, guid: 10a2ded93e39155439bdf84ffd95e01e,
         type: 2}
       attack: 20
       attackSpeed: 0.1

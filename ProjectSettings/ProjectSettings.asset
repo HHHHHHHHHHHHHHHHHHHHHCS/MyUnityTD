@@ -42,8 +42,8 @@ PlayerSettings:
   m_SplashScreenBackgroundPortrait: {fileID: 0}
   m_VirtualRealitySplashScreen: {fileID: 0}
   m_HolographicTrackingLossScreen: {fileID: 0}
-  defaultScreenWidth: 1024
-  defaultScreenHeight: 768
+  defaultScreenWidth: 1920
+  defaultScreenHeight: 1080
   defaultScreenWidthWeb: 960
   defaultScreenHeightWeb: 600
   m_StereoRenderingPath: 0
@@ -65,7 +65,7 @@ PlayerSettings:
   use32BitDisplayBuffer: 1
   disableDepthAndStencilBuffers: 0
   defaultIsFullScreen: 1
-  defaultIsNativeResolution: 1
+  defaultIsNativeResolution: 0
   runInBackground: 0
   captureSingleScreen: 0
   muteOtherAudioSources: 0
@@ -530,7 +530,7 @@ PlayerSettings:
     Purchasing: 0
     UNet: 1
     Unity_Ads: 0
-  cloudProjectId: ce80f8e5-22ff-4a56-bc55-9da1dc15bc05
-  projectName: MyUnityTD
+  cloudProjectId: 94c4f649-a476-44a5-8cf5-2cdfc87e2d84
+  projectName: MyUnityTD (1)
   organizationId: myorganization_deathnote
   cloudEnabled: 0
