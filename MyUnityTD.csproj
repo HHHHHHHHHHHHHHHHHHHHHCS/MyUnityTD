@@ -77,6 +77,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Enemy\EnemeyLevelDataManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyBase.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyHPBar.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyInfoDataManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyInfoList.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyLevelList.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="Assets\Scripts\Game\LoadPrefab.cs" />
     <Compile Include="Assets\Scripts\Game\UIManager.cs" />
     <Compile Include="Assets\Scripts\Game\ViewController.cs" />
+    <Compile Include="Assets\Scripts\Tower\BulletBase.cs" />
     <Compile Include="Assets\Scripts\Tower\CreateTowerButton.cs" />
     <Compile Include="Assets\Scripts\Tower\CreateTowerUIManager.cs" />
     <Compile Include="Assets\Scripts\Tower\TowerBaseList.cs" />

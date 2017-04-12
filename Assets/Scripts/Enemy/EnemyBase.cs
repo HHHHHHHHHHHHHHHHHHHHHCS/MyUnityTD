@@ -8,13 +8,14 @@ public class EnemyBase : MonoBehaviour
 
     private const string deadEffectPath = "Enemy/Effect/EnemyDeadEffect";
 
-
     private static GameObject deadEffect;
 
     private Transform[] movePoints;
     private int moveIndex = 0;
 
     public EnemyInfo enemyInfo;
+
+    private EnemyHPBar enemyHPBar;
 
     public EnemyInfo EnemyInfo
     {
@@ -31,7 +32,17 @@ public class EnemyBase : MonoBehaviour
 
     public virtual void Awake()
     {
-        deadEffect = Resources.Load<GameObject>(deadEffectPath);
+        if(deadEffect==null)
+        {
+            deadEffect = Resources.Load<GameObject>(deadEffectPath);
+        }
+
+    }
+
+    public virtual void Init(EnemyHPBar _enemyHPBar)
+    {
+        enemyInfo.nowHP = enemyInfo.hp;
+        enemyHPBar = _enemyHPBar;
     }
 
     public virtual void Start()
@@ -84,11 +95,18 @@ public class EnemyBase : MonoBehaviour
 
         }
     }
-
+    public virtual float GetHPPer()
+    {
+        return enemyInfo.nowHP==0?0: enemyInfo.nowHP / enemyInfo.hp;
+    }
 
     public virtual float TakeDamage(AttaclType damageType, float damage)
     {
         enemyInfo.hp -= damage;
+        if (enemyHPBar != null)
+        {
+            enemyHPBar.UpdateHP(GetHPPer());
+        }
         if (enemyInfo.hp <= 0)
         {
             enemyInfo.hp = 0;
@@ -103,12 +121,13 @@ public class EnemyBase : MonoBehaviour
     /// </summary>
     protected virtual void Dead()
     {
+        _Dead();
         if (deadEffect)
         {
-            Destroy(Instantiate(deadEffect, transform.position, Quaternion.identity), 1f);
+            Destroy(Instantiate(deadEffect, transform.position+Vector3.up, Quaternion.identity), 1f);
         }
         GameManager.Instance.AddMoney(enemyInfo.reward);
-        EnemyManager.Instance.ReduceEnemyCount(this);
+        
     }
 
 
@@ -117,9 +136,16 @@ public class EnemyBase : MonoBehaviour
     /// </summary>
     protected virtual void Arrived()
     {
-        EnemyManager.Instance.ReduceEnemyCount(this);
+        _Dead();
     }
 
-
+    protected virtual void _Dead()
+    {
+        EnemyManager.Instance.ReduceEnemyCount(this);
+        if(enemyHPBar!=null)
+        {
+            enemyHPBar.DestroySelf();
+        }
+    }
 
 }

@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.EventSystems;
 
 public class CubeBase : MonoBehaviour
 {
+    private Renderer render;
     private int buildID;
     private int buildLevel;
     private TowerBase nowTB;
@@ -21,6 +23,11 @@ public class CubeBase : MonoBehaviour
         {
             return buildLevel;
         }
+    }
+
+    private void Start()
+    {
+        render = GetComponent<Renderer>();
     }
 
     public void NewBuild(TowerBase tb)
@@ -51,6 +58,18 @@ public class CubeBase : MonoBehaviour
             return true;
         }
         return false;
+    }
 
+    private void OnMouseEnter()
+    {
+        if(!EventSystem.current.IsPointerOverGameObject())
+        {
+            render.material.color = Color.blue;
+        }
+    }
+
+    private void OnMouseExit()
+    {
+        render.material.color = Color.white;
     }
 }

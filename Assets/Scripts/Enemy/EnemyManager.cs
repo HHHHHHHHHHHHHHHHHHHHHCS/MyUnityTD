@@ -19,6 +19,11 @@ public class EnemyManager : MonoBehaviour
 
     private List<EnemyBase> enemyList = new List<EnemyBase>();
 
+    private static GameObject enemyHPBar;
+    private const string enemyHPBarPath = "Enemy/UI/HPBar";
+    private static Transform enemyHPBarParent;
+    private const string enemyHPBarParentPath = "Canvas/HPBarManager";
+
 
     public static EnemyManager Instance
     {
@@ -42,6 +47,14 @@ public class EnemyManager : MonoBehaviour
         finishSpawn = false;
         SetList(1);
         startPos = GameObject.Find("StartPos").transform.position;
+        if(enemyHPBar==null)
+        {
+            enemyHPBar = Resources.Load<GameObject>(enemyHPBarPath);
+        }
+        if (enemyHPBarParent == null)
+        {
+            enemyHPBarParent = GameObject.Find(enemyHPBarParentPath).transform;
+        }
     }
 
     void Start()
@@ -90,10 +103,7 @@ public class EnemyManager : MonoBehaviour
 
                 for (int count = 0; count < waveInfo.count; count++)
                 {
-                    EnemyBase eb = Instantiate(waveEnemyInfo.prefab, startPos, Quaternion.identity, transform)
-                        .GetComponent<EnemyBase>();
-                    enemyList.Add(eb);
-                    eb.EnemyInfo = waveEnemyInfo.Clone();
+                    SpawnEnemy(waveEnemyInfo);
                     yield return new WaitForSeconds(levelList.spawnTime);
                 }
             }
@@ -106,6 +116,26 @@ public class EnemyManager : MonoBehaviour
                 yield return new WaitForSeconds(levelList.nextWaveTime);
             }
         }
+    }
+
+    EnemyBase SpawnEnemy(EnemyInfo waveEnemyInfo)
+    {
+        EnemyBase eb = Instantiate(waveEnemyInfo.prefab, startPos, Quaternion.identity, transform)
+    .GetComponent<EnemyBase>();
+        EnemyHPBar hpBar=null;
+        if (enemyHPBar)
+        {
+            hpBar = Instantiate(enemyHPBar, enemyHPBarParent).GetComponent<EnemyHPBar>();
+        }
+        eb.Init(hpBar);
+        if(hpBar)
+        {
+            hpBar.Init(eb.transform, eb.GetHPPer());
+        }
+
+        enemyList.Add(eb);
+        eb.EnemyInfo = waveEnemyInfo.Clone();
+        return eb;
     }
 
     public EnemyInfo GetEnemyInfoById(int id)
