@@ -12,17 +12,14 @@ public class EnemyHPBar : MonoBehaviour
     private RectTransform recTransform;
     private Vector2 offest;
 
-    private void Awake()
-    {
-
-        recTransform = GetComponent<RectTransform>();
-    }
 
     public void Init(Transform _target,float value)
     {
-        
+        recTransform = GetComponent<RectTransform>();
+        slider = GetComponent<Slider>();
         target = _target;
         UpdateHP(value);
+        UpdatePos();
     }
 
     private void Update()

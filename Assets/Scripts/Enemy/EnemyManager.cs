@@ -23,6 +23,7 @@ public class EnemyManager : MonoBehaviour
     private const string enemyHPBarPath = "Enemy/UI/HPBar";
     private static Transform enemyHPBarParent;
     private const string enemyHPBarParentPath = "Canvas/HPBarManager";
+    private const string enemyHPBarPosPath = "HPBarPos";
 
 
     public static EnemyManager Instance
@@ -127,14 +128,12 @@ public class EnemyManager : MonoBehaviour
         {
             hpBar = Instantiate(enemyHPBar, enemyHPBarParent).GetComponent<EnemyHPBar>();
         }
-        eb.Init(hpBar);
+        eb.Init(waveEnemyInfo.Clone(),hpBar);
         if(hpBar)
         {
-            hpBar.Init(eb.transform, eb.GetHPPer());
+            hpBar.Init(eb.transform.Find(enemyHPBarPosPath), eb.GetHPPer());
         }
-
         enemyList.Add(eb);
-        eb.EnemyInfo = waveEnemyInfo.Clone();
         return eb;
     }
 

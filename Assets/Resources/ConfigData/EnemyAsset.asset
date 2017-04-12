@@ -14,22 +14,25 @@ MonoBehaviour:
   data:
   - id: 10001
     prefab: {fileID: 1000012331433250, guid: 82cae8bca47fab74085021c745d58d2f, type: 2}
+    nowHP: 0
     hp: 100
     speed: 10
     arrmor: 10
     magicArrmor: 10
-    reward: 0
+    reward: 5
   - id: 10002
     prefab: {fileID: 1000012331433250, guid: bca73ce8051bf3b45bb661aef0f35a21, type: 2}
+    nowHP: 0
     hp: 100
     speed: 20
     arrmor: 5
     magicArrmor: 10
-    reward: 0
+    reward: 10
   - id: 10003
     prefab: {fileID: 1000012331433250, guid: a5d9056c5b2c52348b4e9991ac21fb2e, type: 2}
+    nowHP: 0
     hp: 200
     speed: 5
     arrmor: 15
     magicArrmor: 5
-    reward: 0
+    reward: 15

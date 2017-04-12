@@ -13,7 +13,7 @@ public class EnemyBase : MonoBehaviour
     private Transform[] movePoints;
     private int moveIndex = 0;
 
-    public EnemyInfo enemyInfo;
+    private EnemyInfo enemyInfo;
 
     private EnemyHPBar enemyHPBar;
 
@@ -23,24 +23,20 @@ public class EnemyBase : MonoBehaviour
         {
             return enemyInfo;
         }
-
-        set
-        {
-            enemyInfo = value;
-        }
     }
 
     public virtual void Awake()
     {
-        if(deadEffect==null)
+        if (deadEffect == null)
         {
             deadEffect = Resources.Load<GameObject>(deadEffectPath);
         }
 
     }
 
-    public virtual void Init(EnemyHPBar _enemyHPBar)
+    public virtual void Init(EnemyInfo _enemyInfo, EnemyHPBar _enemyHPBar)
     {
+        enemyInfo = _enemyInfo;
         enemyInfo.nowHP = enemyInfo.hp;
         enemyHPBar = _enemyHPBar;
     }
@@ -97,20 +93,21 @@ public class EnemyBase : MonoBehaviour
     }
     public virtual float GetHPPer()
     {
-        return enemyInfo.nowHP==0?0: enemyInfo.nowHP / enemyInfo.hp;
+        return enemyInfo.nowHP <= 0 ? 0 : enemyInfo.nowHP / enemyInfo.hp;
     }
 
     public virtual float TakeDamage(AttaclType damageType, float damage)
     {
-        enemyInfo.hp -= damage;
+        enemyInfo.nowHP -= damage;
+       
+        if (enemyInfo.nowHP <= 0)
+        {
+            enemyInfo.nowHP = 0;
+            Dead();
+        }
         if (enemyHPBar != null)
         {
             enemyHPBar.UpdateHP(GetHPPer());
-        }
-        if (enemyInfo.hp <= 0)
-        {
-            enemyInfo.hp = 0;
-            Dead();
         }
         return enemyInfo.hp;
     }
@@ -124,10 +121,10 @@ public class EnemyBase : MonoBehaviour
         _Dead();
         if (deadEffect)
         {
-            Destroy(Instantiate(deadEffect, transform.position+Vector3.up, Quaternion.identity), 1f);
+            Destroy(Instantiate(deadEffect, transform.position + Vector3.up, Quaternion.identity), 1f);
         }
         GameManager.Instance.AddMoney(enemyInfo.reward);
-        
+
     }
 
 
@@ -142,7 +139,7 @@ public class EnemyBase : MonoBehaviour
     protected virtual void _Dead()
     {
         EnemyManager.Instance.ReduceEnemyCount(this);
-        if(enemyHPBar!=null)
+        if (enemyHPBar != null)
         {
             enemyHPBar.DestroySelf();
         }
