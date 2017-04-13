@@ -12015,6 +12015,11 @@ Prefab:
       propertyPath: m_StaticBatchInfo.subMeshCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 23000010678654094, guid: f4c8085dff5006548ba4363aa1c9fac4,
+        type: 2}
+      propertyPath: m_ReceiveShadows
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f4c8085dff5006548ba4363aa1c9fac4, type: 2}
   m_IsPrefabParent: 0
