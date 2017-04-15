@@ -128,4 +128,9 @@ public class CreateTowerUIManager : MonoBehaviour
             nowChoose.CancelCreateTower();
         }
     }
+
+    public bool IsBuildingNow()
+    {
+        return nowChoose != null;
+    }
 }

@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 
 public class CubeBase : MonoBehaviour
 {
+    private bool isEnter;
     private Renderer render;
     private int buildID;
     private int buildLevel;
@@ -30,6 +31,15 @@ public class CubeBase : MonoBehaviour
         render = GetComponent<Renderer>();
     }
 
+    void Update()
+    {
+        if (isEnter && buildID != 0 &&Input.GetMouseButtonDown(0)
+            && !CreateTowerUIManager.Instance.IsBuildingNow())
+        {
+            UIManager.Instance.UpdateTowerInfoButtonPos(transform);
+        }
+    }
+
     public void NewBuild(TowerBase tb)
     {
         buildID = tb.id;
@@ -39,7 +49,7 @@ public class CubeBase : MonoBehaviour
 
     public void Upgrade(int upLevel = 1)
     {
-        if(buildID!=0)
+        if (buildID != 0)
         {
             buildLevel += upLevel;
         }
@@ -53,7 +63,7 @@ public class CubeBase : MonoBehaviour
 
     public bool HaveBuild()
     {
-        if(buildID!=0)
+        if (buildID != 0)
         {
             return true;
         }
@@ -62,14 +72,16 @@ public class CubeBase : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if(!EventSystem.current.IsPointerOverGameObject())
+        if (!EventSystem.current.IsPointerOverGameObject())
         {
+            isEnter = true;
             render.material.color = Color.blue;
         }
     }
 
     private void OnMouseExit()
     {
+        isEnter = false;
         render.material.color = Color.white;
     }
 }
