@@ -10,7 +10,7 @@ public class CreateTowerUIManager : MonoBehaviour
     private const string createButtonPath = "Tower/UI/CreateTowerButton";
     private const string createTowerPath = "TowerList";
 
-    private LayerMask layer ;
+    private LayerMask layer;
 
     private Transform towerParent;
 
@@ -18,9 +18,10 @@ public class CreateTowerUIManager : MonoBehaviour
     private float UIoffsetX = 90;
 
 
-    private int nowID = 0;
+    private CreateTowerButton nowChoose;
 
     private CreateTowerButton[] towerUIArr;
+
 
     private GameObject buildEffectPrefab;
 
@@ -49,9 +50,27 @@ public class CreateTowerUIManager : MonoBehaviour
     }
 
 
+    void CreateTowerUI(int[] towerIDs)
+    {
+        GameObject prefab = LoadPrefab.Load<GameObject>(createButtonPath);
+        towerUIArr = new CreateTowerButton[towerIDs.Length];
+        for (int i = 0; i < towerIDs.Length; i++)
+        {
+            GameObject newGo = Instantiate(prefab, transform);
+            ((RectTransform)newGo.transform).anchoredPosition = new Vector2(UIstartPos.x + UIoffsetX * i, UIstartPos.y);
+            towerUIArr[i] = newGo.GetComponent<CreateTowerButton>();
+            towerUIArr[i].Init(towerIDs[i]);
+        }
+    }
+
+    public void CancelCreateButton()
+    {
+        nowChoose = null;
+    }
+
     void CreateTower()
     {
-        if (nowID != 0 && Input.GetMouseButtonDown(0))
+        if (nowChoose != null && Input.GetMouseButtonDown(0))
         {
             if (!EventSystem.current.IsPointerOverGameObject())
             {
@@ -64,58 +83,49 @@ public class CreateTowerUIManager : MonoBehaviour
                     CubeBase cb = mapCube.GetComponent<CubeBase>();
                     if (cb != null && !cb.HaveBuild())
                     {
-                        TowerBase tb = TowerDataManager.Instance.GetByID(nowID).Clone();
+                        TowerBase tb = TowerDataManager.Instance.GetByID(nowChoose.TowerID).Clone();
                         GameManager.Instance.UseMoney(tb.info[0].money);
                         Instantiate(tb.info[0].prefab, mapCube.transform.position, Quaternion.identity, towerParent)
                             .GetComponent<TowerController>().Init(tb, 0);
-                        nowID = 0;
                         cb.NewBuild(tb);
                         if (buildEffectPrefab != null)
                         {
                             Destroy(Instantiate(buildEffectPrefab, mapCube.transform.position
                                 , Quaternion.identity, mapCube.transform), 1.0f);
                         }
+                        RemoveCloseButton();
                     }
                 }
             }
         }
     }
 
-    void CreateTowerUI(int[] towerIDs)
-    {
-        GameObject prefab = LoadPrefab.Load<GameObject>(createButtonPath);
-        towerUIArr = new CreateTowerButton[towerIDs.Length];
-        for (int i = 0; i < towerIDs.Length; i++)
-        {
-            GameObject newGo = (GameObject)Instantiate(prefab, transform);
-            ((RectTransform)newGo.transform).anchoredPosition = new Vector2(UIstartPos.x + UIoffsetX * i, UIstartPos.y);
-            towerUIArr[i] = newGo.GetComponent<CreateTowerButton>();
-            towerUIArr[i].Init(towerIDs[i]);
-        }
-    }
+
 
 
     public void GetMoney(int money)
     {
-        foreach(CreateTowerButton item in towerUIArr)
+        foreach (CreateTowerButton item in towerUIArr)
         {
             item.RefreshMask(money);
         }
     }
 
 
-    public void CreateTower(int id)
+    public void CreateTower(CreateTowerButton choose)
     {
-        if(id!=0)
+        if (nowChoose != null)
         {
-            if(nowID==id)
-            {
-                id = 0;
-            }
-            else
-            {
-                nowID = id;
-            }
+            RemoveCloseButton();
+        }
+        nowChoose = choose;
+    }
+
+    void RemoveCloseButton()
+    {
+        if (nowChoose != null)
+        {
+            nowChoose.CancelCreateTower();
         }
     }
 }

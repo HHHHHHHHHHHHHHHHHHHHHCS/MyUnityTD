@@ -9,9 +9,18 @@ public class CreateTowerButton : MonoBehaviour
     private Image towerImage;
     private GameObject mask;
     private Text moneyText;
+    private Button closeButton;
 
     private int towerID;
     private int needMoney;
+
+    public int TowerID
+    {
+        get
+        {
+            return towerID;
+        }
+    }
 
     public int NeedMoney
     {
@@ -27,7 +36,9 @@ public class CreateTowerButton : MonoBehaviour
         towerImage = transform.Find("TowerImage").GetComponent<Image>();
         mask = transform.Find("MaskImage").GetComponent<Image>().gameObject;
         moneyText = transform.Find("MoneyText").GetComponent<Text>();
+        closeButton = transform.Find("CloseButton").GetComponent<Button>();
         button.onClick.AddListener(CreateTower);
+        closeButton.onClick.AddListener(CancelCreateTower);
 
     }
 
@@ -57,7 +68,18 @@ public class CreateTowerButton : MonoBehaviour
 
     public void CreateTower()
     {
-        CreateTowerUIManager.Instance.CreateTower(towerID);
+        if(GameManager.Instance.GetMoney()>= needMoney)
+        {
+            closeButton.gameObject.SetActive(true);
+            CreateTowerUIManager.Instance.CreateTower(this);
+        }
+
     }
 
+    public void CancelCreateTower()
+    {
+
+        closeButton.gameObject.SetActive(false);
+        CreateTowerUIManager.Instance.CancelCreateButton();
+    }
 }
