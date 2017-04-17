@@ -12,6 +12,21 @@ public class TowerController : MonoBehaviour
 
     private Transform bulletPos;
 
+	public TowerBase TB
+	{
+		get
+		{
+			return tb;
+		}
+	}
+
+	public int NowLevel
+	{
+		get
+		{
+			return nowLevel;
+		}
+	}
 
     public void Init(TowerBase _tb, int _nowLevel)
     {
@@ -103,4 +118,25 @@ public class TowerController : MonoBehaviour
             attackTimer -= Time.fixedDeltaTime;
         }
     }
+
+	public int GetMaxLevel()
+	{
+		return tb.info.Count;
+	}
+
+	public bool IsMaxLevel()
+	{
+		return nowLevel >=( GetMaxLevel - 1);
+	}
+
+	public int GetSellMoney()
+	{
+		int money = 0;
+		for (int i = 0; i <=nowLevel; i++) 
+		{
+			money += tb.info [i].money;
+		}
+		return money >> 1;
+	}
 }
+

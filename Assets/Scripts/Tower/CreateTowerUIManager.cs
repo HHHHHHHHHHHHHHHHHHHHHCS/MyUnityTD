@@ -85,9 +85,9 @@ public class CreateTowerUIManager : MonoBehaviour
                     {
                         TowerBase tb = TowerDataManager.Instance.GetByID(nowChoose.TowerID).Clone();
                         GameManager.Instance.UseMoney(tb.info[0].money);
-                        Instantiate(tb.info[0].prefab, mapCube.transform.position, Quaternion.identity, towerParent)
+						TowerController tc = Instantiate(tb.info[0].prefab, mapCube.transform.position, Quaternion.identity, towerParent)
                             .GetComponent<TowerController>().Init(tb, 0);
-                        cb.NewBuild(tb);
+						cb.NewBuild(tc);
                         if (buildEffectPrefab != null)
                         {
                             Destroy(Instantiate(buildEffectPrefab, mapCube.transform.position

@@ -7,22 +7,13 @@ public class CubeBase : MonoBehaviour
     private bool isEnter;
     private Renderer render;
     private int buildID;
-    private int buildLevel;
-    private TowerBase nowTB;
+	private TowerController nowTC;
 
     public int BuildIID
     {
         get
         {
             return buildID;
-        }
-    }
-
-    public int BuildLevel
-    {
-        get
-        {
-            return buildLevel;
         }
     }
 
@@ -34,31 +25,22 @@ public class CubeBase : MonoBehaviour
     void Update()
     {
         if (isEnter && buildID != 0 &&Input.GetMouseButtonDown(0)
-            && !CreateTowerUIManager.Instance.IsBuildingNow())
+			&&nowTC!=null&& !CreateTowerUIManager.Instance.IsBuildingNow())
         {
-            UIManager.Instance.UpdateTowerInfoButtonPos(transform);
+			UIManager.Instance.ClickTowerInfo(nowTC);
         }
     }
 
-    public void NewBuild(TowerBase tb)
+	public void NewBuild(TowerController tc)
     {
-        buildID = tb.id;
-        buildLevel = 1;
-        nowTB = tb;
+		nowTC = tc;
+		buildID = nowTC.TB.id;
     }
 
-    public void Upgrade(int upLevel = 1)
-    {
-        if (buildID != 0)
-        {
-            buildLevel += upLevel;
-        }
-    }
-
-    public void Sell()
+    public void DestoryInfo()
     {
         buildID = 0;
-        buildLevel = 0;
+		nowTC = null;
     }
 
     public bool HaveBuild()

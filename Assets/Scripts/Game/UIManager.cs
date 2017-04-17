@@ -24,6 +24,8 @@ public class UIManager : MonoBehaviour
     private Text upMoneyText;
     private Text sellMoneyText;
 
+	private TowerController nowTC;
+
     void Awake()
     {
         _instance = this;
@@ -41,10 +43,28 @@ public class UIManager : MonoBehaviour
         towerInfoButtons.gameObject.SetActive(false);
     }
 
+	void Update()
+	{
+		if (nowTC!=null) 
+		{
+			UpdateTowerInfoButtonPos (nowTC.transform);
+		}
+	}
+
     public void RefreshMoneyText(int moeny)
     {
         moneyText.text = moeny.ToString();
     }
+
+	public void ClickTowerInfo(TowerController tc)
+	{
+		if (tc != null) 
+		{
+			nowTC = tc;
+			UpdateTowerInfoButtonPos (tc.transform);
+		}
+	}
+
 
     public void UpdateTowerInfoButtonPos(Transform target)
     {
@@ -61,4 +81,40 @@ public class UIManager : MonoBehaviour
             towerInfoButtons.gameObject.SetActive(true);
         }
     }
+
+	public void HideTowerInfoButton()
+	{
+		towerInfoButtons.gameObject.SetActive(false);
+	}
+
+	public void UpdateTowerButton()
+	{
+		if (!nowTC.IsMaxLevel) 
+		{
+			
+		} 
+	}
+
+	public void SellTowerButton()
+	{
+		
+	}
+
+	public void RefershTowerInfo()
+	{
+		if (!nowTC.IsMaxLevel)
+		{
+			upButton.interactable=true;
+			upMoneyText.text = nowTC.TB.info [nowTC.NowLevel + 1].money;
+		}
+		else
+		{
+			upButton.interactable=false;
+			upMoneyText.text = "MAX";
+		}
+
+		sellMoneyText.text = nowTC.GetSellMoney ();
+	}
+
+
 }
