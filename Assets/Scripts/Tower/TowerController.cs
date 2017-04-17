@@ -12,23 +12,23 @@ public class TowerController : MonoBehaviour
 
     private Transform bulletPos;
 
-	public TowerBase TB
-	{
-		get
-		{
-			return tb;
-		}
-	}
+    public TowerBase TB
+    {
+        get
+        {
+            return tb;
+        }
+    }
 
-	public int NowLevel
-	{
-		get
-		{
-			return nowLevel;
-		}
-	}
+    public int NowLevel
+    {
+        get
+        {
+            return nowLevel;
+        }
+    }
 
-    public void Init(TowerBase _tb, int _nowLevel)
+    public TowerController Init(TowerBase _tb, int _nowLevel)
     {
         tb = _tb;
         nowLevel = _nowLevel;
@@ -40,6 +40,7 @@ public class TowerController : MonoBehaviour
         {
             bulletManager = GameObject.Find("BulletManager").transform;
         }
+        return this;
     }
 
     void FixedUpdate()
@@ -119,24 +120,38 @@ public class TowerController : MonoBehaviour
         }
     }
 
-	public int GetMaxLevel()
-	{
-		return tb.info.Count;
-	}
+    public int GetMaxLevel()
+    {
+        return tb.info.Count;
+    }
 
-	public bool IsMaxLevel()
-	{
-		return nowLevel >=( GetMaxLevel - 1);
-	}
+    public bool IsMaxLevel()
+    {
+        return nowLevel >= (GetMaxLevel() - 1);
+    }
 
-	public int GetSellMoney()
-	{
-		int money = 0;
-		for (int i = 0; i <=nowLevel; i++) 
-		{
-			money += tb.info [i].money;
-		}
-		return money >> 1;
-	}
+    public int GetSellMoney()
+    {
+        int money = 0;
+        for (int i = 0; i <= nowLevel; i++)
+        {
+            money += tb.info[i].money;
+        }
+        return money >> 1;
+    }
+
+    public void UpgradeTower()
+    {
+        GameManager.Instance.UseMoney(tb.info[nowLevel + 1].money);
+        nowLevel++;
+        transform.localScale += Vector3.one * 0.25f;
+        CreateTowerUIManager.Instance.CreateTowerEffect(gameObject);
+    }
+
+    public void SellSelf()
+    {
+        Destroy(gameObject);
+        GameManager.Instance.AddMoney(GetSellMoney());
+    }
 }
 

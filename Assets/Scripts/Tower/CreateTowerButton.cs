@@ -70,6 +70,7 @@ public class CreateTowerButton : MonoBehaviour
     {
         if(GameManager.Instance.GetMoney()>= needMoney)
         {
+            moneyText.gameObject.SetActive(false);
             closeButton.gameObject.SetActive(true);
             CreateTowerUIManager.Instance.CreateTower(this);
         }
@@ -78,7 +79,7 @@ public class CreateTowerButton : MonoBehaviour
 
     public void CancelCreateTower()
     {
-
+        moneyText.gameObject.SetActive(true);
         closeButton.gameObject.SetActive(false);
         CreateTowerUIManager.Instance.CancelCreateButton();
     }

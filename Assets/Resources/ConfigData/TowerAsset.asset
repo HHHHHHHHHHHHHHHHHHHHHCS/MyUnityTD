@@ -85,11 +85,11 @@ MonoBehaviour:
       attack: 15
       attackSpeed: 0.1
       attackRange: 12.5
-      money: 30
+      money: 40
     - prefab: {fileID: 1000012227691610, guid: 6d8aabb6f2d13514ca38ffa413a3ae08, type: 2}
       bulletPrefab: {fileID: 1847952208273642, guid: 10a2ded93e39155439bdf84ffd95e01e,
         type: 2}
       attack: 20
       attackSpeed: 0.1
       attackRange: 15
-      money: 30
+      money: 50

@@ -19,11 +19,9 @@ public class CreateTowerUIManager : MonoBehaviour
 
 
     private CreateTowerButton nowChoose;
-
     private CreateTowerButton[] towerUIArr;
-
-
     private GameObject buildEffectPrefab;
+    private bool hadBuild;
 
     public static CreateTowerUIManager Instance
     {
@@ -39,7 +37,7 @@ public class CreateTowerUIManager : MonoBehaviour
         towerParent = GameObject.Find(createTowerPath).transform;
         buildEffectPrefab = Resources.Load<GameObject>(buildEffectPath);
         layer = LayerMask.GetMask("MapCube");
-        int[] towers = { 20001, 20002, 20003 };
+        int[] towers = { 20001, 20003, 20002 };
         CreateTowerUI(towers);
     }
 
@@ -88,20 +86,31 @@ public class CreateTowerUIManager : MonoBehaviour
 						TowerController tc = Instantiate(tb.info[0].prefab, mapCube.transform.position, Quaternion.identity, towerParent)
                             .GetComponent<TowerController>().Init(tb, 0);
 						cb.NewBuild(tc);
-                        if (buildEffectPrefab != null)
-                        {
-                            Destroy(Instantiate(buildEffectPrefab, mapCube.transform.position
-                                , Quaternion.identity, mapCube.transform), 1.0f);
-                        }
-                        RemoveCloseButton();
+                        CreateTowerEffect(mapCube);
+                        hadBuild = true;
                     }
                 }
             }
         }
     }
 
+    public void CreateTowerEffect(GameObject mapCube)
+    {
+        if (buildEffectPrefab != null)
+        {
+            Destroy(Instantiate(buildEffectPrefab, mapCube.transform.position
+                , Quaternion.identity, mapCube.transform), 1.0f);
+        }
+    }
 
-
+    public void LateUpdate()
+    {
+        if(hadBuild)
+        {
+            RemoveCloseButton();
+            hadBuild = false;
+        }
+    }
 
     public void GetMoney(int money)
     {
@@ -119,6 +128,7 @@ public class CreateTowerUIManager : MonoBehaviour
             RemoveCloseButton();
         }
         nowChoose = choose;
+        UIManager.Instance.TowerInfoOperate.CancelTowerButton();
     }
 
     void RemoveCloseButton()

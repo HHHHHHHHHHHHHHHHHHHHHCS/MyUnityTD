@@ -18,7 +18,7 @@
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.5.3f1</UnityVersion>
     <RootNamespace></RootNamespace>
-    <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
+    <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -94,6 +94,7 @@
     <Compile Include="Assets\Scripts\Tower\TowerBaseList.cs" />
     <Compile Include="Assets\Scripts\Tower\TowerController.cs" />
     <Compile Include="Assets\Scripts\Tower\TowerDataManager.cs" />
+    <Compile Include="Assets\Scripts\Tower\TowerInfoButtons.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
