@@ -73,7 +73,7 @@ public class EnemyManager : MonoBehaviour
 
         if (enemyList.Count <= 0 && finishSpawn)
         {
-            Debug.Log("Win");
+            GameManager.Instance.WinGame();
         }
         return enemyList.Count;
     }
@@ -140,6 +140,12 @@ public class EnemyManager : MonoBehaviour
     public EnemyInfo GetEnemyInfoById(int id)
     {
         return EnemyInfoDataManager.Instance.GetByID(id);
+    }
+
+
+    public void OnDestroy()
+    {
+        _instance = null;
     }
 }
 

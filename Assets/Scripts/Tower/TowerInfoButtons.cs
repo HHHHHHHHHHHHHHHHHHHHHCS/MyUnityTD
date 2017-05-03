@@ -15,10 +15,10 @@ public class TowerInfoButtons : MonoBehaviour
     private TowerController nowTC;
     private CubeBase nowCB;
 
-    public TowerInfoButtons Init(GameObject newGO)
+    public TowerInfoButtons Init()
     {
 
-        towerInfoButtons = newGO.GetComponent<RectTransform>();
+        towerInfoButtons = transform.GetComponent<RectTransform>();
         upButton = towerInfoButtons.Find("UPButton").GetComponent<Button>();
         sellButton = towerInfoButtons.Find("SellButton").GetComponent<Button>();
         cancelButton = towerInfoButtons.Find("CancelButton").GetComponent<Button>();
@@ -65,7 +65,7 @@ public class TowerInfoButtons : MonoBehaviour
         Vector2 player2DPosition = Camera.main.WorldToScreenPoint(target.position);
         towerInfoButtons.position = player2DPosition;
 
-        //血条超出屏幕就不显示  
+ 
         if (player2DPosition.x > Screen.width || player2DPosition.x < 0 || player2DPosition.y > Screen.height || player2DPosition.y < 0)
         {
             towerInfoButtons.gameObject.SetActive(false);

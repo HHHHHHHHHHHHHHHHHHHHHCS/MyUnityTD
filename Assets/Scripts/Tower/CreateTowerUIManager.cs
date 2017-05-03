@@ -143,4 +143,9 @@ public class CreateTowerUIManager : MonoBehaviour
     {
         return nowChoose != null;
     }
+
+    public void OnDestroy()
+    {
+        _instance = null;
+    }
 }

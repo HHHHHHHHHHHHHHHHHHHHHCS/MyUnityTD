@@ -133,6 +133,7 @@ public class EnemyBase : MonoBehaviour
     /// </summary>
     protected virtual void Arrived()
     {
+        GameManager.Instance.ChangeHP(-1);
         _Dead();
     }
 
